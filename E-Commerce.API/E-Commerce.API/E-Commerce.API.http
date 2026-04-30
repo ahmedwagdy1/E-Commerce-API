@@ -1,0 +1,21 @@
+@E_Commerce.API_HostAddress = https://localhost:44391
+@Id = 5
+
+GET {{E_Commerce.API_HostAddress}}/api/weatherforecast/
+Accept: application/json
+
+###Get All Products
+GET {{E_Commerce.API_HostAddress}}/api/Products/Products
+Accept: application/json
+
+###Get Product By Id
+GET {{E_Commerce.API_HostAddress}}/api/products/{{Id}}
+Accept: application/json
+
+### Get All Brands
+GET {{E_Commerce.API_HostAddress}}/api/Products/Brands/
+Accept: application/json
+
+### Get All Types
+GET {{E_Commerce.API_HostAddress}}/api/Products/Types/
+Accept: application/json
