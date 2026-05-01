@@ -14,5 +14,10 @@ namespace Domain.Contracts
         public void Update(TEntity entity);
         // Delete
         public void Delete(TEntity entity);
+
+        #region Specifications
+        public Task<IEnumerable<TEntity>> GetAllAsync(ISpecifications<TEntity, TKey> specifications);
+        public Task<TEntity?> GetByIdAsync(ISpecifications<TEntity, TKey> specifications);
+        #endregion
     }
 }
