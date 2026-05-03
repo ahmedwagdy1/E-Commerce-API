@@ -18,6 +18,7 @@ namespace Domain.Contracts
         #region Specifications
         public Task<IEnumerable<TEntity>> GetAllAsync(ISpecifications<TEntity, TKey> specifications);
         public Task<TEntity?> GetByIdAsync(ISpecifications<TEntity, TKey> specifications);
+        public Task<int> CountAsync(ISpecifications<TEntity, TKey> specifications);
         #endregion
     }
 }

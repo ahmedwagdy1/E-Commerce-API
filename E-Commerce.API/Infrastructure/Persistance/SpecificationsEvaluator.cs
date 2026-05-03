@@ -11,13 +11,24 @@ namespace Persistance
             if (specifications.Criteria is not null) // where(p => p.id == value)
                 query = query.Where(specifications.Criteria);
 
-            if(specifications.IncludeExpressions is not null && specifications.IncludeExpressions.Count > 0) // include
+            if (specifications.OrderBy is not null)
+                query = query.OrderBy(specifications.OrderBy);
+
+            if (specifications.OrderByDescending is not null)
+                query = query.OrderByDescending(specifications.OrderByDescending);
+
+            if (specifications.IncludeExpressions is not null && specifications.IncludeExpressions.Count > 0) // include
             {
                 //foreach (var item in specifications.IncludeExpressions)
                 //{
                 //    query = query.Include(item);
                 //}
                 query = specifications.IncludeExpressions.Aggregate(query, (currentQuery, expression) => currentQuery.Include(expression));
+            }
+
+            if (specifications.IsPageneted)
+            {
+                query = query.Skip(specifications.Skip).Take(specifications.Take);
             }
 
             return query;

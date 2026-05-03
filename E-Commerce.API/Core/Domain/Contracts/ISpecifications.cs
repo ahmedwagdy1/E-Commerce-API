@@ -9,5 +9,12 @@ namespace Domain.Contracts
         public Expression<Func<TEntity, bool>>? Criteria { get; }
         // Signature for property ==> [Expression => Include]
         public List<Expression<Func<TEntity, object>>> IncludeExpressions { get; }
+        // Sorting [OrderBy, OrderByDescending]
+        public Expression<Func<TEntity, object>>? OrderBy { get; }
+        public Expression<Func<TEntity, object>>? OrderByDescending { get; }
+        // Pagenation [Skip, Take]
+        public int Skip { get; }
+        public int Take { get; }
+        public bool IsPageneted { get; }
     }
 }

@@ -21,10 +21,13 @@
 
         #region Specifications
         public async Task<IEnumerable<TEntity>> GetAllAsync(ISpecifications<TEntity, TKey> specifications)
-           => await SpecificationsEvaluator.CreateQuary(_dbContext.Set<TEntity>(), specifications).ToListAsync();
+            => await SpecificationsEvaluator.CreateQuary(_dbContext.Set<TEntity>(), specifications).ToListAsync();
 
         public async Task<TEntity?> GetByIdAsync(ISpecifications<TEntity, TKey> specifications)
-           => await SpecificationsEvaluator.CreateQuary(_dbContext.Set<TEntity>(), specifications).FirstOrDefaultAsync();
+            => await SpecificationsEvaluator.CreateQuary(_dbContext.Set<TEntity>(), specifications).FirstOrDefaultAsync();
+
+        public async Task<int> CountAsync(ISpecifications<TEntity, TKey> specifications)
+            => await SpecificationsEvaluator.CreateQuary(_dbContext.Set<TEntity>(), specifications).CountAsync();
         #endregion
     }
 }
