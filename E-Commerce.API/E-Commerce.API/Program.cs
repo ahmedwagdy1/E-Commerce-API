@@ -1,5 +1,9 @@
 
 using Domain.Contracts;
+using E_Commerce.API.Extentions;
+using E_Commerce.API.Factories;
+using E_Commerce.API.Middlewares;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistance;
 using Persistance.Data;
@@ -19,39 +23,35 @@ namespace E_Commerce.API
 
             // Add services to the container.
 
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-            builder.Services.AddDbContext<StoreDbContext>(options =>
-            {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-            });
-            builder.Services.AddScoped<IDataSeeding, DataSeeding>();
-            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-            builder.Services.AddAutoMapper(cfg => { }, typeof(AssemblyReference).Assembly);
-            builder.Services.AddScoped<IServiceManger, ServiceManger>();
+            #region DI Container
+            // Add WepApi Service
+            builder.Services.WebApiExtension();
 
+            // Add Infrastructure Service
+            builder.Services.AddInfrastructureExtension(builder.Configuration);
+
+            // Add Core Service
+            builder.Services.AddCoreExtension();
+            #endregion
+
+            #region Pipelines - Middlewares
             var app = builder.Build();
 
-            using var scope = app.Services.CreateScope();
-            var objectOfDataSeeding = scope.ServiceProvider.GetRequiredService<IDataSeeding>();
-            await objectOfDataSeeding.SeedDataAsync();
+            await app.SeedDatabaseAsync();
+
+            app.UseExceptionsHandlingMiddleware();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
-                app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerMiddleware();
             }
+            #endregion
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseAuthorization();
-
-
             app.MapControllers();
-
             app.Run();
         }
     }
