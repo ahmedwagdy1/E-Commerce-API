@@ -2,7 +2,7 @@
 {
     public class StoreDbContext : DbContext
     {
-        public StoreDbContext(DbContextOptions options) : base(options)
+        public StoreDbContext(DbContextOptions<StoreDbContext> options) : base(options)
         {
             
         }

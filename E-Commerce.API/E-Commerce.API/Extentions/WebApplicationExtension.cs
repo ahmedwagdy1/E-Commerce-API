@@ -1,6 +1,5 @@
 ﻿using Domain.Contracts;
 using E_Commerce.API.Middlewares;
-using System.Threading.Tasks;
 
 namespace E_Commerce.API.Extentions
 {
@@ -11,6 +10,7 @@ namespace E_Commerce.API.Extentions
             using var scope = app.Services.CreateScope();
             var objectOfDataSeeding = scope.ServiceProvider.GetRequiredService<IDataSeeding>();
             await objectOfDataSeeding.SeedDataAsync();
+            await objectOfDataSeeding.SeedIdentityDataAsync();
             return app;
         }
         public static WebApplication UseExceptionsHandlingMiddleware(this WebApplication app)

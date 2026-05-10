@@ -1,17 +1,23 @@
 ﻿using AutoMapper;
 using Domain.Contracts;
+using Domain.Entities.IdentityModule;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using Services.Abstraction;
 using Services.Abstraction.Contracts;
 using Services.Implementations;
+using Shared.Common;
 
 namespace Services
 {
-    public class ServiceManger(IUnitOfWork _unitOfWork, IMapper _mapper, IBasketRepository _basketRepository) : IServiceManger
+    public class ServiceManger(IUnitOfWork _unitOfWork, IMapper _mapper, IBasketRepository _basketRepository, UserManager<User> _userManager, IOptions<JwtOptions> _options) : IServiceManger
     {
         private readonly Lazy<IProductService> _productService = new Lazy<IProductService>(() => new ProductService(_unitOfWork, _mapper));
         private readonly Lazy<IBasketService> _basketService = new Lazy<IBasketService>(() => new BasketService(_basketRepository, _mapper));
+        private readonly Lazy<IAuthenticationService> _authenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationService(_userManager, _options));
         public IProductService ProductService => _productService.Value;
 
         public IBasketService BasketService => _basketService.Value;
+        public IAuthenticationService AuthenticationService => _authenticationService.Value;
     }
 }

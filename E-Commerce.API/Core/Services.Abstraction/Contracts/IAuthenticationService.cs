@@ -1,0 +1,12 @@
+﻿using Shared.Dtos.IdentityModule;
+
+namespace Services.Abstraction.Contracts
+{
+    public interface IAuthenticationService
+    {
+        // Login     return UserResultDto [DisplayName , Token , Email] take parameter [Email , Password]
+        Task<UserResultDto> LoginAsync(LoginDto loginDto);
+        // Register  return UserResultDto [DisplayName , Token , Email] take parameter [Email , Password , PhoneNamber, DisplayName, UserName]
+        Task<UserResultDto> RegisterAsync(RegisterDto registerDto);
+    }
+}

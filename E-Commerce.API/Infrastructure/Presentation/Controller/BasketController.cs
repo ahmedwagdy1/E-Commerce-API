@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services.Abstraction;
 using Services.Abstraction.Contracts;
@@ -7,8 +8,8 @@ using Shared.Dtos.ProductModule;
 
 namespace Presentation.Controller
 {
+    [Authorize]
      // baseUrl/api/Basket
-
     public class BasketController(IServiceManger _serviceManger) : ApiController
     {
         // Get  BaseUrl/api/Basket
