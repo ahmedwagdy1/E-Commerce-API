@@ -10,14 +10,20 @@ using Shared.Common;
 
 namespace Services
 {
-    public class ServiceManger(IUnitOfWork _unitOfWork, IMapper _mapper, IBasketRepository _basketRepository, UserManager<User> _userManager, IOptions<JwtOptions> _options) : IServiceManger
+    public class ServiceManger(IUnitOfWork _unitOfWork,
+        IMapper _mapper,
+        IBasketRepository _basketRepository,
+        UserManager<User> _userManager,
+        IOptions<JwtOptions> _options) : IServiceManger
     {
         private readonly Lazy<IProductService> _productService = new Lazy<IProductService>(() => new ProductService(_unitOfWork, _mapper));
         private readonly Lazy<IBasketService> _basketService = new Lazy<IBasketService>(() => new BasketService(_basketRepository, _mapper));
-        private readonly Lazy<IAuthenticationService> _authenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationService(_userManager, _options));
+        private readonly Lazy<IAuthenticationService> _authenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationService(_userManager, _options, _mapper));
+        private readonly Lazy<IOrderService> _orderService = new Lazy<IOrderService>(() => new OrderService(_mapper, _basketRepository, _unitOfWork));
         public IProductService ProductService => _productService.Value;
 
         public IBasketService BasketService => _basketService.Value;
         public IAuthenticationService AuthenticationService => _authenticationService.Value;
+        public IOrderService OrderService => _orderService.Value;
     }
 }

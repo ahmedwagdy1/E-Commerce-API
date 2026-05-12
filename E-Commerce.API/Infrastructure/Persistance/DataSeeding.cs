@@ -1,4 +1,5 @@
 ﻿using Domain.Entities.IdentityModule;
+using Domain.Entities.OrderModule;
 using Microsoft.AspNetCore.Identity;
 using System.Text.Json;
 
@@ -42,6 +43,14 @@ namespace Persistance
                     var product = await JsonSerializer.DeserializeAsync<List<Product>>(productData);
                     if (product is not null && product.Any())
                         await _dbContext.Products.AddRangeAsync(product);
+                }
+                if (!_dbContext.DeliveryMethods.Any())
+                {
+                    var deliveryData = File.OpenRead("..\\Infrastructure\\Persistance\\DataSeeding\\delivery.json");
+                    // json ==> List<ProductType>
+                    var delivery = await JsonSerializer.DeserializeAsync<List<DeliveryMethod>>(deliveryData);
+                    if (delivery is not null && delivery.Any())
+                        await _dbContext.DeliveryMethods.AddRangeAsync(delivery);
                 }
                 await _dbContext.SaveChangesAsync();
             }
