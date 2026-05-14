@@ -6,7 +6,7 @@
         public string UserEmail { get; init; } = string.Empty;
         public AddressDto Address { get; init; }
         public ICollection<OrderItemDto> OrderItems { get; init; } = new List<OrderItemDto>();
-        public string paymentStatus { get; init; } = string.Empty;
+        public string PaymentStatus { get; init; } = string.Empty;
         public string DeliveryMethod { get; init; } = string.Empty;
         public int? DeliveryMethodId { get; init; }
         public decimal SubTotal { get; init; }

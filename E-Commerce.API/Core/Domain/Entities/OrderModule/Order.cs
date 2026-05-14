@@ -21,7 +21,7 @@ namespace Domain.Entities.OrderModule
         public string UserEmail { get; set; } = string.Empty;
         public ShippingAddress Address { get; set; }
         public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
-        public OrderPaymentStatus paymentStatus { get; set; } = OrderPaymentStatus.Pending;
+        public OrderPaymentStatus PaymentStatus { get; set; } = OrderPaymentStatus.Pending;
         public DeliveryMethod DeliveryMethod { get; set; }
         public int? DeliveryMethodId { get; set; }
         public decimal SubTotal { get; set; }

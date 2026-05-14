@@ -8,7 +8,7 @@ namespace Persistance.Data.Configuration
         {
             builder.OwnsOne(o => o.Address, a => a.WithOwner());
             builder.HasMany(o => o.OrderItems).WithOne().OnDelete(DeleteBehavior.Cascade);
-            builder.Property(o => o.paymentStatus).HasConversion(
+            builder.Property(o => o.PaymentStatus).HasConversion(
                 p => p.ToString(), p => Enum.Parse<OrderPaymentStatus>(p));
             builder.HasOne(o => o.DeliveryMethod).WithMany().OnDelete(DeleteBehavior.SetNull);
             builder.Property(o => o.SubTotal).HasColumnType("decimal(18,4)");

@@ -21,7 +21,7 @@ namespace Services.MappingProfiles
                 .ForMember(dest => dest.PictureUrl, option => option.MapFrom(src => src.Product.PictureUrl));
             CreateMap<Order, OrderResult>()
                 .ForMember(dest => dest.DeliveryMethod, option => option.MapFrom(src => src.DeliveryMethod.ShortName))
-                .ForMember(dest => dest.paymentStatus, option => option.MapFrom(src => src.paymentStatus.ToString()))
+                .ForMember(dest => dest.PaymentStatus, option => option.MapFrom(src => src.PaymentStatus.ToString()))
                 .ForMember(dest => dest.Total, option => option.MapFrom(src => src.SubTotal + src.DeliveryMethod.Price));
         }
     }
