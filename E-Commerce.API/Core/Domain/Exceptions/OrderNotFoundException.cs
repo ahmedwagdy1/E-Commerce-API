@@ -2,7 +2,7 @@
 {
     public class OrderNotFoundException<TKey> : NotFoundExceptions
     {
-        public OrderNotFoundException(TKey key) : base($"Order with {typeof(TKey).Name} {key} not found")
+        public OrderNotFoundException(TKey key) : base($"Order with key {key} not found")
         {
         }
     }

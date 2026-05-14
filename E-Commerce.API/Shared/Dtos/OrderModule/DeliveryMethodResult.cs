@@ -4,7 +4,7 @@
     {
         public string ShortName { get; init; } = string.Empty;
         public string Description { get; init; } = string.Empty;
-        public decimal Price { get; init; }
+        public decimal Cost { get; init; }
         public string DeliveryTime { get; init; } = string.Empty;
     }
 }

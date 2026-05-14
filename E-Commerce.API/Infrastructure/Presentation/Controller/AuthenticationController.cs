@@ -4,7 +4,6 @@ using Services.Abstraction;
 using Shared.Dtos.IdentityModule;
 using Shared.Dtos.OrderModule;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace Presentation.Controller
 {

@@ -7,13 +7,15 @@ namespace Domain.Entities.OrderModule
         {
             
         }
-        public Order(string userEmail, ShippingAddress address, ICollection<OrderItem> orderItems, DeliveryMethod deliveryMethod, decimal subTotal)
+        public Order(string userEmail, ShippingAddress address, ICollection<OrderItem> orderItems, DeliveryMethod deliveryMethod, 
+            decimal subTotal, string paymentIntentId)
         {
             UserEmail = userEmail;
             Address = address;
             OrderItems = orderItems;
             DeliveryMethod = deliveryMethod;
             SubTotal = subTotal;
+            PaymentIntentId = paymentIntentId;
         }
 
         public string UserEmail { get; set; } = string.Empty;

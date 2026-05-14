@@ -17,13 +17,13 @@ namespace Services.Specifications
             
             switch (parameters.sort)
             {
-                case ProductSortingOptions.Name:
+                case ProductSortingOptions.NameAsc:
                     AddOrderBy(p => p.Name);
                     break;
                 case ProductSortingOptions.NameDesc:
                     AddOrderByDescending(p => p.Name);
                     break;
-                case ProductSortingOptions.Price:
+                case ProductSortingOptions.PriceAsc:
                     AddOrderBy(p => p.Price);
                     break;
                 case ProductSortingOptions.PriceDesc:

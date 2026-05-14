@@ -6,9 +6,18 @@ namespace E_Commerce.API.Extentions
 {
     public static class WebApiSercicesExtension
     {
-        public static IServiceCollection WebApiExtension(this IServiceCollection services)
+        public static IServiceCollection WebApiExtension(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddControllers();
+            var frontUrl = configuration.GetSection("URLS")["FrontURL"];
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder =>
+                {
+                    builder.AllowAnyHeader().AllowAnyMethod()
+                    .WithOrigins(frontUrl);
+                });
+            });
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(option =>
             {

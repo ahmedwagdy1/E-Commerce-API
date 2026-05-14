@@ -67,6 +67,7 @@ namespace Services.Implementations
                 ?? throw new UserNotFoundException(userEmail);
             return _mapper.Map<AddressDto>(user.Address);
         }
+
         public async Task<AddressDto> UpdateUserAddressAsync(string userEmail, AddressDto addressDto)
         {
             var user = await _userManager.Users.Include(u => u.Address)

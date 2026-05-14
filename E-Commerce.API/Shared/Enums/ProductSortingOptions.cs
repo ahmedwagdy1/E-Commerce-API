@@ -2,9 +2,9 @@
 {
     public enum ProductSortingOptions
     {
-        Name = 1,
+        NameAsc = 1,
         NameDesc,
-        Price,
+        PriceAsc,
         PriceDesc,
     }
 }

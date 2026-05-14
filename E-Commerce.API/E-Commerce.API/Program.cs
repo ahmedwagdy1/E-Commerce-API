@@ -12,7 +12,7 @@ namespace E_Commerce.API
 
             #region DI Container
             // Add WepApi Service
-            builder.Services.WebApiExtension();
+            builder.Services.WebApiExtension(builder.Configuration);
 
             // Add Infrastructure Service
             builder.Services.AddInfrastructureExtension(builder.Configuration);
@@ -37,6 +37,7 @@ namespace E_Commerce.API
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCors("CorsPolicy");
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();

@@ -7,7 +7,7 @@ using System.Security.Claims;
 namespace Presentation.Controller
 {
     [Authorize]
-    public class OrderController(IServiceManger _serviceManger) : ApiController
+    public class OrdersController(IServiceManger _serviceManger) : ApiController
     {
         // Create Order
         [HttpPost]
