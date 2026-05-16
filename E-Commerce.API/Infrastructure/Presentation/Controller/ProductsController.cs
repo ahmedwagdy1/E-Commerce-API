@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Persistance.Attribute;
 using Services.Abstraction;
 using Shared;
 using Shared.Dtos.ProductModule;
@@ -11,6 +12,7 @@ namespace Presentation.Controller
     public class ProductsController(IServiceManger _serviceManger) : ApiController
     {
         #region GetAllProducts
+        [RedisCash]
         // EndPoint ==> GetAllProducts
         [HttpGet] // baseUrl/api/Products
         [ProducesResponseType(typeof(ProductResultDto), StatusCodes.Status200OK)]

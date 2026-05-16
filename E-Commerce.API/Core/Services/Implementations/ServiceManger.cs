@@ -17,7 +17,7 @@ namespace Services
         IBasketRepository _basketRepository,
         UserManager<User> _userManager,
         IOptions<JwtOptions> _options,
-        IConfiguration _configuration) : IServiceManger
+        IConfiguration _configuration) /*: IServiceManger*/
     {
         private readonly Lazy<IProductService> _productService = new Lazy<IProductService>(() => new ProductService(_unitOfWork, _mapper));
         private readonly Lazy<IBasketService> _basketService = new Lazy<IBasketService>(() => new BasketService(_basketRepository, _mapper));

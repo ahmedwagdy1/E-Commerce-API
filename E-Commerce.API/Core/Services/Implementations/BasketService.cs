@@ -7,7 +7,7 @@ using Shared.Dtos.BasketModule;
 
 namespace Services.Implementations
 {
-    internal class BasketService(IBasketRepository _basketRepository, IMapper _mapper) : IBasketService
+    public class BasketService(IBasketRepository _basketRepository, IMapper _mapper) : IBasketService
     {
         public async Task<BasketDto> AddOrUpdateBasketAsync(BasketDto basket)
         {
